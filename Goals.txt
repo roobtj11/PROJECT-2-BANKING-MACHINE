@@ -1,0 +1,12 @@
+MVP
+1.	Financial Calculator that keeps track of a person’s finances and bills		(each person is a class)
+2.	Must be able to adjust their financial data and output updated information	()
+3. Be able to input and output information from the user’s account file.
+
+Stretch
+1.	Make it so multiple people can use the program and it stores each person separately (USERS)
+2.	Make the output financial report a separate file
+3.	Account Security (username and password)
+4.	Helps user develop a monthly spending plan
+5.	Add a child account feature where a sub-account can be made and monitored by the parent account
+6.	Ability to add new user through the menu screen
