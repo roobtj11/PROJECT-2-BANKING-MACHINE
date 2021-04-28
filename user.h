@@ -1,12 +1,16 @@
+#pragma once
+#include <string>
+#include <iostream>
 class user
 {
-public:
+protected:
 	std::string name;
+public:
 	user(std::string name) {
 		this->name = name;
 	};
-private:
-
-	
+	void print_name(){
+		std::cout << name << std::endl;
+	};
 
 };
