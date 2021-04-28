@@ -6,6 +6,7 @@
 #include "parent.h"
 #include "child.h"
 
+int current_user;
 std::vector <std::string> usernames{ "bob65","fred12", "george18" };
 std::vector <std::string> passwords{ "bob65","fred12", "george18"};
 std::vector <user*> users = { 
@@ -14,19 +15,27 @@ std::vector <user*> users = {
 	new child("george")
 };
 
+void expenses() {
+	
+}
 
-/*
+void income() {
+
+}
+
 void menu(int a) {
 	if(a = 1){
-
+		expenses();
 	} else if (a = 2) {
-
+		income();
 	} else if (a = 3) {
-
+		current_user = 321654987;
+		welcome();
 	} else if (a > 3) {
-
+		std::cout << "That is not a valid option, please enter a valid choice";
+		enter_account();
 	}
-}*/
+}
 
 void enter_account() {
 	std::cout << "What would you like to do? Please enter one onf the following options." << std::endl;
@@ -35,7 +44,7 @@ void enter_account() {
 	std::cout << "3. Log Out" << std::endl;
 	int choice;
 	std::cin >> choice;
-	//menu(choice);
+	menu(choice);
 
 }
 
@@ -50,12 +59,16 @@ void login() {
 		if (username == usernames[i]) {
 			if (password == passwords[i]) {
 				users[i]->print_name();
+				current_user = i;
 				enter_account();
+				proceed = 1;
 			}
 		}
 	}
-
-	enter_account();
+	if (proceed == 0) {
+		std::cout << "Enter a valid Username and Password!" << std::endl;
+		std::exit(106);
+	}
 }
 
 void welcome() {
@@ -65,8 +78,6 @@ void welcome() {
 
 int main() {
 	welcome();
-
-
 
 	return 0;
 }
