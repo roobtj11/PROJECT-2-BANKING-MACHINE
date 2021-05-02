@@ -19,7 +19,6 @@ public:
 
 	void print() override {
 		std::cout << first_name << ", " << last_name << ":" << std::endl;
-		view_all_finances();
 	};
 
 	bool login(std::string inputed_password) {
@@ -28,12 +27,13 @@ public:
 	}
 
 	void view_all_finances() override {
+		print();
 		std::cout << "Account total:\t\t$" << account_total << std::endl
 			<< "Monthly income:\t\t$" << income_pm << "/month" << std::endl
 			<< "Monthly Home Expenses:\t$" << home_expenses_pm << "/month" << std::endl
 			<< "Monthly Auto Expenses:\t$" << auto_expenses_pm << "/month" << std::endl
 			<< "Monthly Food Expenses:\t$" << food_expenses_pm << "/month" << std::endl
-			<< "Monthly Fun Expenses:\t$" << fun_expenses_pm << "/month" << std::endl
+			<< "Monthly Fun Expenses:\t$" << fun_expenses_pm << "/month" << std::endl << std::endl;
 			<< "Monthly return:\t\t$" << income_pm - home_expenses_pm - auto_expenses_pm - food_expenses_pm - fun_expenses_pm << "/month" << std::endl
 			<< std::endl;
 	}
