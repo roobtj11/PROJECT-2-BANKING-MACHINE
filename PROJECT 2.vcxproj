@@ -142,16 +142,16 @@
     <Text Include="Goals.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="child.cpp" />
     <ClCompile Include="parent.cpp" />
-    <ClCompile Include="user.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="child.h" />
-    <ClInclude Include="enums.h" />
     <ClInclude Include="parent.h" />
     <ClInclude Include="user.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Users_info.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

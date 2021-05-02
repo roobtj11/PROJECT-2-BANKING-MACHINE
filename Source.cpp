@@ -1,83 +1,142 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "enums.h"
-#include "user.h"
+#include <map>
+#include <set>
 #include "parent.h"
-#include "child.h"
+#include "user.h"
+#include <fstream>
+#include <sstream>
+#include "enums.h"
 
-int current_user;
-std::vector <std::string> usernames{ "bob65","fred12", "george18" };
-std::vector <std::string> passwords{ "bob65","fred12", "george18"};
-std::vector <user*> users = { 
-	new parent("bob"),
-	new parent("fred"),
-	new child("george")
-};
+std::map<std::string, user*> users = {};
+std::string username;
 
-void expenses() {
+void get_users(std::string);
+void print_all();
+void login();
+void welcome();
+void enter_account();
+
+int main() {
+	get_users("Users_info.csv");	
+	welcome();
 	
+
+	print_all();
+	return 0;
 }
 
-void income() {
+void print_all() {
+	std::cout << "All users in the database: " << std::endl << std::endl;
+	std::map<std::string, user*>::iterator it;
 
-}
-
-void menu(int a) {
-	if(a = 1){
-		expenses();
-	} else if (a = 2) {
-		income();
-	} else if (a = 3) {
-		current_user = 321654987;
-		welcome();
-	} else if (a > 3) {
-		std::cout << "That is not a valid option, please enter a valid choice";
-		enter_account();
+	for (it = users.begin(); it != users.end(); it++) {
+		std::string key = it->first;
+		user* value = it->second;
+		value->print();
+		delete value;
 	}
+	//std::users["akaiser000"]->print();
 }
+void get_users(std::string path) {
+	std::cout << "LOADING USERS ..." << std::endl;
+	std::ifstream stream;
+	stream.open(path);
 
-void enter_account() {
-	std::cout << "What would you like to do? Please enter one onf the following options." << std::endl;
-	std::cout << "1. Edit Expenses" << std::endl;
-	std::cout << "2. Edit Income" << std::endl;
-	std::cout << "3. Log Out" << std::endl;
-	int choice;
-	std::cin >> choice;
-	menu(choice);
+	//Skip the first line
+	std::string line;
+	std::getline(stream, line);
 
+	//Read every line in the file
+	while (std::getline(stream, line)) {
+		std::stringstream ss(line);
+		std::string substr;
+
+		std::getline(ss, substr, ',');
+		std::string uname = substr;
+
+		std::getline(ss, substr, ',');
+		std::string fname = substr;
+
+		std::getline(ss, substr, ',');
+		std::string lname = substr;
+
+		std::getline(ss, substr, ',');
+		std::string pword = substr;
+
+		//Read the Year
+		std::getline(ss, substr, ',');
+		double atot = std::stod(substr);
+
+		std::getline(ss, substr, ',');
+		double ipm = std::stod(substr);
+
+		std::getline(ss, substr, ',');
+		double hepm = std::stod(substr);
+
+		std::getline(ss, substr, ',');
+		double aepm = std::stod(substr);
+
+		std::getline(ss, substr, ',');
+		double fepm = std::stod(substr);
+
+		std::getline(ss, substr, ',');
+		double fun_epm = std::stod(substr);
+
+		users.insert({ uname, new parent(fname,lname,pword,atot, ipm,hepm,aepm,fepm,fun_epm) });
+	}
+	stream.close();
+	std::cout << "ALL USERS LOADED!" << std::endl << std::endl;
 }
-
 void login() {
-	std::cout << "To log in please enter your USER NAME: ";
-	std::string username, password;
+	std::cout << "To log in please enter your USERNAME: ";
+	std::string password;
 	std::getline(std::cin, username);
-	std::cout << "Please enter your password: " << std::endl;
-	std::getline(std::cin, password);
-	bool proceed = 0;
-	for (int i = 0; i < users.size(); i++) {
-		if (username == usernames[i]) {
-			if (password == passwords[i]) {
-				users[i]->print_name();
-				current_user = i;
-				enter_account();
-				proceed = 1;
-			}
+	if (users.count(username)) {
+		std::cout << "Please enter your password: " << std::endl;
+		std::getline(std::cin, password);
+		if (users[username]->login(password)) {
+			std::cout << "Welcome " << users[username]->get_full_name() << std::endl;
+			enter_account();
+		}
+		else {
+			std::cout << "INCORRECT PASSWORD" << std::endl << std::endl << std::endl;
+			welcome();
 		}
 	}
-	if (proceed == 0) {
-		std::cout << "Enter a valid Username and Password!" << std::endl;
-		std::exit(106);
+	else {
+		std::cout << "NO SUCH USER FOUND" << std::endl << std::endl << std::endl;
+		welcome();
 	}
 }
-
 void welcome() {
 	std::cout << "Welcome to our college idiot financial program." << std::endl;
 	login();
 }
 
-int main() {
-	welcome();
+void enter_account() {
+	std::cout << "What would you like to do? Please enter one onf the following options." << std::endl
+		<< "1. View all finances" << std::endl
+		<< "2. Edit Expenses" << std::endl
+		<< "3. Edit Income" << std::endl
+		<< "4. Log Out" << std::endl;
+	std::string choice_str;
+	std::getline(std::cin, choice_str);
+	int choice = std::stoi(choice_str);
+	if (choice == 1) {
+		users[username]->view_all_finances();
+	}
+	else if (choice == 2) {
 
-	return 0;
+	}
+	else if (choice == 3) {
+
+	}
+	else if (choice == 4) {
+
+	}
+	else {
+		std::exit(13);
+	}
 }
