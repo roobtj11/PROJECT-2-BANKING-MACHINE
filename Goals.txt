@@ -1,35 +1,35 @@
 Each project must satisfy the following criteria to fulfill a comprehensive review of what we've learned this semester:
 
-*	Object-Oriented Programming					(PEOPLE)*
-*	Inheritance/Abstraction						(EXPENSE INCOME)
-*	Custom Generic/Template class(es) and/or function(s)	...
-*	Enumerated Type (enum)						(MENUE SELECTIONS)
-*	Set or Map
+*	Object-Oriented Programming					(PEOPLE)										*
+*	Inheritance/Abstraction						(EXPENSE INCOME)								*	
+*	Custom Generic/Template class(es) and/or function(s)	...		
+*	Enumerated Type (enum)						(MENUE SELECTIONS)	
+*	Set or Map																					*
 This also includes the tasks required for the first half of the semester:
-*	User input via console						(EASY PEASY)
-*	Input validation							()
-*	Conditional statements (if/else)
-*	Arithmetic operations
-*	Arrays/Vectors
-*	Loops (while/for)
-*	File I/O									(input base expenses)...(Print expenses)
+*	User input via console						(EASY PEASY)									*
+*	Input validation							()						
+*	Conditional statements (if/else)															*
+*	Arithmetic operations																		*
+*	Arrays/Vectors														
+*	Loops (while/for)																			*
+*	File I/O									(input base expenses)...(Print expenses)		*
 
 MVP
-1.	Financial Calculator that keeps track of a person’s finances and bills				(each person is a class)
+1.	Financial Calculator that keeps track of a person’s finances and bills				(each person is a class)		*
 
 Expenses	(home(water, electrical, insurance)), (Auto(gas, maintnance, insurance)), food, fun, investments
 Income		(Work),investments ,(other)
 
 2.	Must be able to adjust their financial data and output updated information			()
 getters and setters
-3.	Be able to input and output information from the user’s account file.
+3.	Be able to input and output information from the user’s account file.												*
 print
 
 Stretch
-1.	Make it so multiple people can use the program and it stores each person separately (USERS)      *
+1.	Make it so multiple people can use the program and it stores each person separately (USERS)							*
 2.	Make the output financial report a separate file									()
-3.	Account Security																	(username and password) *
-4.	Helps user develop a monthly spending plan											(Output)
+3.	Account Security																	(username and password)			*
+4.	Helps user develop a monthly spending plan											(Output)						-
 5.	Add a child account feature where a sub-account can be made and monitored by the parent account
 6.	Ability to add new user through the menu screen										()
 
